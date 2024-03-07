@@ -1,0 +1,18 @@
+services:
+  fxtumblr:
+    build:
+      context: .
+    ports:
+      - 7878:7878
+    volumes:
+      - ./fonts:/app/fonts
+      - ./config.yml:/app/config.yml
+      - fxtumblr-renders:/renders
+
+  redis:
+    image: redis:alpine
+    ports:
+      - 6379:6379
+
+volumes:
+  fxtumblr-renders:
