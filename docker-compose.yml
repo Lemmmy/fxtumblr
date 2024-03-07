@@ -2,12 +2,21 @@ services:
   fxtumblr:
     build: .
     volumes:
+      - ./config.yml:/app/config.yml
+
+  fxtumblr-renderer:
+    build:
+      context: .
+      dockerfile: Dockerfile.renderer
+    volumes:
       - ./fonts:/app/fonts
       - ./config.yml:/app/config.yml
       - fxtumblr-renders:/renders
+      - fxtumblr-data:/home/appuser
 
   redis:
     image: redis:alpine
 
 volumes:
   fxtumblr-renders:
+  fxtumblr-data:
